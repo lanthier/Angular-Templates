@@ -1,5 +1,5 @@
 # TestSite
-A site I'm creating to learn more about web development.
+Basic templates to my journey to understanding web development.
 Front-End Plans:
 HTML, CSS, Angular.js
 
