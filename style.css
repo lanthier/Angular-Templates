@@ -1,0 +1,7 @@
+
+.row:nth-child(odd) {
+  background: #dee2e8;
+}
+input.ng-invalid {
+  background-color:rgba(255,0,0,.5);
+}

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<meta charset="UTF-8">
+<title>Angular Templates</title>
+</head>
+<h1 stytle="center">Angular Front End Code Snippets</h1>
+<body ng-app="myApp">
+  <div id="contents">
+    <ol>
+      <li><a href="#" onmousedown="scrollTo('0');">Angular Expression Math</a></li>
+      <li><a href="#" onmousedown="scrollTo('1');">String Concatenation with Controller</a></li>
+      <li><a href="#" onmousedown="scrollTo('2');">Dynamic Input Background Changing</a></li>
+      <li><a href="#" onmousedown="scrollTo('3');">Angular Objects and using ng-bind</a></li>
+      <li><a href="#" onmousedown="scrollTo('4');">Arrays in Angular</a></li>
+      <li><a href="#" onmousedown="scrollTo('5');">Repeat Objects Arrays</a></li>
+      <li><a href="#" onmousedown="scrollTo('6');">Custom Directive</a></li>
+      <li><a href="#" onmousedown="scrollTo('7');">Custom Directive with Restriction to Attribute</a></li>
+      <li><a href="#" onmousedown="scrollTo('8');">CSS ng-model styling</a></li>
+      <li><a href="#" onmousedown="scrollTo('9');">Clicking Using ng-controller</a></li>
+      <li><a href="#" onmousedown="scrollTo('10');">javascript Scope with Colors</a></li>
+      <li><a href="#" onmousedown="scrollTo('11');">Filtering Currency</a></li>
+      <li><a href="#" onmousedown="scrollTo('12');">Filtering Searches</a></li>
+      <li><a href="#" onmousedown="scrollTo('13');">Example of Creating a Custom Filter</a></li>
+      <li><a href="#" onmousedown="scrollTo('14');">Angular Services: $interval Service</a></li>
+      <li><a href="#" onmousedown="scrollTo('15');">Angular Services: Custom Service Code Sample</a></li>
+      <li><a href="#" onmousedown="scrollTo('16');">Selection Box</a></li>
+      <li><a href="#" onmousedown="scrollTo('17');">Mouse Over Counter</a></li>
+      <li><a href="#" onmousedown="scrollTo('18');">Mouse Click Counter</a></li>
+      <li><a href="#" onmousedown="scrollTo('19');">Event Handler</a></li>
+      <li><a href="#" onmousedown="scrollTo('20');">Checkbox Show/Hide Content</a></li>
+      <li><a href="#" onmousedown="scrollTo('21');">Radio Button Input</a></li>
+      <li><a href="#" onmousedown="scrollTo('22');">Check for String Validity</a></li>
+    </ol>
+  </div>
+  <div class="striped">
+    <div class="row" id="0" title="Expression Math">
+      <div ng-init="a=3;b=5;">
+        <p>My expression: {{a + b}} </p>
+        <pre><code ng-non-bindable>
+          &lt;div ng-app=""ng-init="a=3;b=5;"&gt;
+            &lt;p&gt;My expression: {{a + b}} &lt;/p&gt;
+          &lt;/div&gt;
+        </code></pre>
+      </div>
+    </div>
+    <div class="row" id="1" title="String Concatenation with Controller">
+      <div ng-controller="myCtrl">
+        First Name: <input type="text" ng-model="firstName"><br>
+        Last Name: <input type="text" ng-model="lastName"><br>
+        Full Name: {{firstName + " " + lastName}}
+
+        <br>
+        <pre><code ng-non-bindable>
+          &lt;div ng-app="myApp" ng-controller="myCtrl"&gt;
+           First Name: &lt;input type="text" ng-model="firstName"&gt;&lt;br&gt;
+           Last Name: &lt;input type="text" ng-model="lastName"&gt;&lt;br&gt;
+           &lt;br&gt;
+           Full Name: {{firstName + " " + lastName}}
+          &lt;/div&gt;
+          &lt;script&gt;
+          var app = angular.module('myApp',[]);
+          app.controller('myCtrl',function($scope) {
+            $scope.firstName="John";
+            $scope.lastName="Doe";
+          });
+          &lt;/script&gt;
+
+        </code></pre>
+      </div>
+    </div>
+    <div class="row" id="2" title="Dynamic Input Background with Model">
+      <div ng-init="myCol='lightblue'">
+        <input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+        <pre><code ng-non-bindable>
+          &lt;div ng-app=""ng-init="myCol='lightblue'"&gt;
+           &lt;input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}"&gt;
+          &lt;/div&gt;
+        </code></pre>
+      </div>
+    </div>
+    <div class="row" id="3" title="Objects and using ng-bind">
+      <div ng-init="person={firstName:'Gabe', lastName: 'Balicki'}">
+        <p>The last name is {{ person.lastName }}</p>
+        <p>The first name is <span ng-bind="person.firstName"></span></p>
+        <pre><code ng-non-bindable>
+          &lt;div ng-app="" ng-init="person={firstName:'Gabe', lastName: 'Balicki'}"&gt;
+           &lt;p&gt;The last name is {{ person.lastName }} &lt;/p&gt;
+           &lt;p&gt;The first name is &lt;span ng-bind="person.firstName"&gt;&lt;/span&gt;&lt;/p&gt;
+          &lt;/div&gt;
+        </code></pre>
+      </div>
+    </div>
+    <div class="row" id="4" title="Arrays">
+      <div ng-init="points=[2,4,8,16,32,64]">
+        <p>The array: {{points}}</p>
+        <p>The third value: {{points[2]}} </p>
+        <pre><code ng-non-bindable>
+          &lt;div ng-app="" ng-init="points=[2,4,8,16,32,64]"&gt;
+            &lt;p&gt;The array: {{points}}&lt;/p&gt;
+            &lt;p&gt;The third value: {{points[2]}} &lt;/p&gt;
+          &lt;/div&gt;
+        </code></pre>
+      </div>
+    </div>
+    <div class="row" id="5" title="Repeat Through Object Arrays">
+      <div ng-init="names=[{name:'David',city:'Marquete'},{name:'Doug',city:'Chicago'},{name:'Derek',city:'Norway'}]">
+        <ul>
+          <li ng-repeat="x in names">
+            {{ x.name + ', ' + x.city }}
+          </li>
+        </ul>
+        <pre><code ng-non-bindable>
+          &lt;div ng-app="" ng-init="names=[{name:'David',city:'Marquete'},{name:'Doug',city:'Chicago'},{name:'Derek',city:'Norway'}]">
+            &lt;ul>
+              &lt;li ng-repeat="x in names">
+                {{ x.name + ', ' + x.city }}
+              &lt;/li>
+            &lt;/ul>
+          &lt;/div>
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="row" id="6" title="Custom directive">
+      <first-directive></first-directive>
+      <pre><code ng-non-bindable>
+        &lt;div ng-app="myApp"&gt;
+         &lt;first-directive&gt;&lt;/first-directive&gt;
+        &lt;div&gt;
+
+        &lt;script>
+         var app= angular.module('myApp', []);
+         app.directive("firtDirective",function() {
+           return {
+             template: "&lt;h1&gt;Made by a directive constructor! &lt;/h1&gt;"
+           };
+         });
+        &lt;/script>
+      </code></pre>
+    </div>
+
+    <div class="row" id="7" title="Custom directive with Restriction to Attribute">
+      <div restricted-directive> </div>
+      <pre><code ng-non-bindable>
+        &lt;div ng-app="myApp"&gt;
+         &lt;div restricted-directive&gt;&lt;/div&gt;
+        &lt;div&gt;
+
+        &lt;script>
+         var app= angular.module('myApp', []);
+         app.directive("restrictedtDirective",function() {
+           return {
+             restrict: "A",
+             template: "&lt;h1&gt;Made by a directive constructor! &lt;/h1&gt;"
+           };
+         });
+        &lt;/script>
+      </code></pre>
+    </div>
+
+    <div class="row" id="8" title="CSS with ng-model">
+      <form name="myForm">
+          Enter your name: <input name="myName" ng-model="myText" required>
+      </form>
+      <pre><code ng-non-bindable>
+        &lt;div class="row" title="CSS with ng-model">
+          &lt;form name="myForm">
+              Enter your name: &lt;input name="myName" ng-model="myText" required&gt;
+          &lt;/form>
+        &lt;/div>
+
+        &lt;style>
+         input.ng-invalid {
+           background-color:rgba(255,0,0,.5);
+         }
+        &lt;/style>
+      </code></pre>
+    </div>
+    <div class="row" id="9" title="Clicking using ng-controller">
+      <div ng-controller="clickCtrl">
+        <h1 ng-click="changeName()">{{firstName}}</h1>
+      </div>
+      <pre><code ng-non-bindable>
+        &lt;div ng-app=""ng-controller="clickCtrl">
+         &lt;h1 ng-click="changeName()">{{firstName}}&lt;/h1>
+        &lt;/div>
+
+        &lt;script>
+         var app = angular.module('myApp', []);
+         app.controller('clickCtrl',function($scope) {
+           $scope.firstName = "David";
+           $scope.changeName = function() {
+             $scope.firstName = "Divad";
+           }
+         });
+      </code></pre>
+    </div>
+
+    <div class="row" id="10" title="Javascript scope with colors">
+      <p style="color:{{color}};">The rootscope color</p>
+      <div ng-controller="myContr">
+        <p style="color:{{color}};">The controller scope color {{color}}</p>
+      </div>
+      <p style="color:{{color}};">The rootscope color {{color}}</p>
+
+      <pre><code ng-non-bindable>
+        &lt;div ng-app="myApp">
+          &lt;p style="color:{{color}};">The rootscope color&lt;/p>
+          &lt;div ng-controller="myContr">
+            &lt;p style="color:{{color}};">The controller scope color {{color}}&lt;/p>
+          &lt;/div>
+          &lt;p style="color:{{color}};">The rootscope color {{color}}&lt;/p>
+        &lt;/div>
+
+        &lt;script>
+          app.run(function($rootScope) {
+            $rootScope.color = 'orange';
+          });
+          app.controller('myContr',function($scope) {
+            $scope.color  = 'green';
+          });
+        &lt;script>
+      </code></pre>
+    </div>
+    <div class="row" id="11" title="Filtering Currency" ng-init="price=45.005">
+      <h1>Price: {{ price | currency }}</h1>
+
+      <pre><code ng-non-bindable>
+        &lt;div ng-app="" ng-init="price=45">
+         &lt;h1>Price: {{ price | currency }}&lt;/h1>
+        &lt;/div&gt;
+      </pre></code>
+    </div>
+    <div class="row" id="12" title="Filtering Searches">
+
+      <div ng-controller="namesCtrl">
+        <p>Filter:</p>
+        <p><input type="text" ng-model="userSearch"></p>
+
+        <ul>
+          <li ng-repeat="x in names | filter:userSearch">
+            {{ x }}
+          </li>
+        </ul>
+
+      </div>
+      <pre><code ng-non-bindable>
+        &lt;div ng-app="myApp" ng-controller="namesCtrl"&gt;
+          &lt;p>Filter:&lt;/p>
+          &lt;p>&lt;input type="text" ng-model="userSearch">&lt;/p>
+
+          &lt;ul>
+            &lt;li ng-repeat="x in names | filter:userSearch">
+              {{ x }}
+            &lt;/li>
+          &lt;/ul>
+
+          &lt;script>
+            var app = angular.module('myApp', []);
+            app.controller('namesCtrl', function($scope) {
+              $scope.names = [
+                'David',
+                'Gabe',
+                'Ben',
+                'Alex',
+                'Matt',
+                'Mathew',
+                'Bernie',
+                'Danny'
+              ];
+            });
+          &lt;/script>
+      </code></pre>
+    </div>
+    <div class="row" id="13" title="Example of creating a custom filter">
+      <h2>Coding a Custom Filter</h2>
+      <pre><code ng-non-bindable>
+
+        &lt;ul ng-app="myApp" ng-controller="namesCtrl">
+          &lt;li ng-repeat="x in names">
+            {{x | myFormat}}
+          &lt;/li>
+        &lt;/ul>
+
+        &lt;script&gt;
+          var app = angular.module('myApp', []);
+          app.filter('myFormat', function() {
+          return function(x) {
+              var i, c, txt = "";
+              for (i = 0; i < x.length; i++) {
+                  c = x[i];
+                  if (i % 2 == 0) {
+                      c = c.toUpperCase();
+                  }
+                  txt += c;
+                }
+              return txt;
+            };
+          });
+        &lt;/script>
+      </code></pre>
+
+    </div>
+    <div class="row" id="14" title="$interval Service">
+      <h1 ng-controller="timeCtrl">{{time}}</h1>
+
+      <pre><code ng-non-bindable>
+        &lt;h1 ng-controller="timeCtrl">{{time}}&lt;/h1>
+
+        &lt;script>
+          var app = angular.module('myApp', []);
+          app.controller('timeCtrl',function($scope,$interval) {
+            $scope.time = new Date().toLocaleTimeString();
+            $interval(function () {
+                $scope.time = new Date().toLocaleTimeString();
+            }, 1000);
+          });
+        &lt;/script>
+      </code></pre>
+    </div>
+    <div class="row" id="15" title="Custom Service">
+      <h2>Coding a Custom Service</h2>
+      <pre><code ng-non-bindable>
+        app.service('hexafy', function() {
+            this.myFunc = function (x) {
+                return x.toString(16);
+            }
+        });
+        app.controller('myCtrl', function($scope, hexafy) {
+          $scope.hex = hexafy.myFunc(255);
+        });
+
+      </code></pre>
+    </div>
+    <div class="row" id="16" title="Selection Box">
+      <div ng-init="names=['Gabe', 'Vanessa', 'Matt', 'DJ', 'Anlouis', 'Doug III']">
+        <select ng-model="selectedName" ng-options="x for x in names"></select>
+        <p> You selected {{selectedName}} </p>
+      </div>
+      <pre><code ng-non-bindable>
+        &lt;div ng-init="names=['Gabe', 'Vanessa', 'Matt', 'DJ', 'Anlouis', 'Doug III']">
+          &lt;select ng-model="selectedName" ng-options="x for x in names">&lt;/select>
+          &lt;p> You selected {{selectedName}} &lt;/p>
+        &lt;/div>
+      </code></pre>
+    </div>
+    <div class="row" id="17" title="Mouse Over Counter">
+      <div ng-init="count = 0;">
+        <h1 ng-mousemove="count=count+1">Mouse Over Me!</h1>
+        <h2>{{count}}</h2>
+      </div>
+      <pre><code ng-non-bindable>
+        &lt;div ng-init="count = 0;">
+          &lt;h1 ng-mousemove="count=count+1">Mouse Over Me!&lt;/h1>
+          &lt;h2>{{count}}&lt;/h2>
+        &lt;/div>
+      </code></pre>
+    </div>
+    <div class="row" id="18" title="Click Here!">
+      <button ng-init="clickCount = 0" ng-click="clickCount = clickCount + 1">Click Me!</button>
+      <h2>{{clickCount}}</h2>
+      <pre><code ng-non-bindable>
+        &lt;div ng-init="clickCount = 0">
+          &lt;button ng-init="clickCount = 0; ng-click="clickCount = clickCount + 1">Click Me!</button>
+          &lt;h2>{{clickCount}}&lt;/h2>
+        &lt;/div>
+      </code></pre>
+    </div>
+    <div class="row" id="19" title="Event Handling">
+      <div ng-controller="eventCtrl">
+        <h1 ng-mousemove="myFunc($event)">Mouse Over Me!</h1>
+        <p>Coordinates: {{x + ', ' + y}}</p>
+      </div>
+      <pre><code ng-non-bindable>
+        &lt;div ng-controller="eventCtrl">
+          &lt;h1 ng-mousemove="myFunc($event)">Mouse Over Me!</h1>
+          &lt;p>Coordinates: {{x + ', ' + y}}&lt;/p>
+        &lt;/div>
+        &lt;script>
+          var app = angular.module('myApp', []);
+          app.controller('eventCtrl', function($scope) {
+            $scope.myFunc = function(myEvent) {
+              $scope.x = myEvent.clientX;
+              $scope.y = myEvent.clientY;
+            }
+          });
+        &lt;/script>
+      </code></pre>
+    </div>
+    <div class="row" id="20" title="CheckBox Show/Hide Content">
+      <form>
+        Check to show a header:
+        <input type="checkbox" ng-model="checked">
+      </form>
+      <h1 ng-show="checked">Surprise!</h1>
+      <pre><code ng-non-bindable>
+        &lt;div ng-app="">
+          &lt;form>
+            Check to show a header:
+            &lt;input type="checkbox" ng-model="checked">
+          &lt;/form>
+          &lt;h1 ng-show="checked">Surprise!&lt;/h1>
+        &lt;/div>
+      </code></pre>
+    </div>
+    <div class="row" id="21" title="Radio Bottons">
+      <form>
+        Pick a topic:
+        <input type="radio" ng-model="radioVar" value="wolves">Wolves
+        <input type="radio" ng-model="radioVar" value="tigers">Tigers
+        <input type="radio" ng-model="radioVar" value="pandas">Pandas
+      </form>
+      <div ng-switch="radioVar">
+        <h1 ng-switch-when="wolves">Wolves</h1>
+        <h1 ng-switch-when="tigers">Tigers</h1>
+        <h1 ng-switch-when="pandas">Pandas</h1>
+      </div>
+      <pre><code ng-non-bindable>
+        &lt;div ng-app="">
+          &lt;form>
+            Pick a topic:
+            &lt;input type="radio" ng-model="radioVar" value="wolves">Wolves
+            &lt;input type="radio" ng-model="radioVar" value="tigers">Tigers
+            &lt;input type="radio" ng-model="radioVar" value="pandas">Pandas
+          &lt;/form>
+          &lt;div ng-switch="radioVar">
+            &lt;h1 ng-switch-when="wolves">Wolves&lt;/h1>
+            &lt;h1 ng-switch-when="tigers">Tigers&lt;/h1>
+            &lt;h1 ng-switch-when="pandas">Pandas&lt;/h1>
+          &lt;div>
+        &lt;/div>
+      </code></pre>
+    </div>
+    <div class="row" id="22" title="Check for String Validity">
+      <form name="myForm">
+      <input name="myInput" ng-model="myInput" required my-directive>
+      </form>
+      <p>There is the word "hi" in the above form:</p>
+      <h1>{{myForm.myInput.$valid}}</h1>
+      <pre><code ng-non-bindable>
+        &lt;div ng-app="myApp"
+          &lt;form name="myForm">
+          &lt;input name="myInput" ng-model="myInput" required my-directive>
+          &lt;/form>
+          &lt;p>There is the word "hi" in the above form:&lt;/p>
+          &lt;h1>{{myForm.myInput.$valid}}&lt;/h1>
+        &lt;/div>
+
+        &lt;script>
+          var app = angular.module('myApp', []);
+          app.directive('myDirective', function() {
+              return {
+                  require: 'ngModel',
+                  link: function(scope, element, attr, mCtrl) {
+                      function myValidation(value) {
+                          if (value.indexOf("hi") > -1) {
+                              mCtrl.$setValidity('charE', true);
+                          } else {
+                              mCtrl.$setValidity('charE', false);
+                          }
+                          return value;
+                      }
+                      mCtrl.$parsers.push(myValidation);
+                  }
+              };
+          });
+        &lt;/script>
+      </code></pre>
+    </div>
+  </div>
+
+  <script>
+    var app = angular.module('myApp', []);
+    app.directive('myDirective', function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attr, mCtrl) {
+                function myValidation(value) {
+                    if (value.indexOf("hi") > -1) {
+                        mCtrl.$setValidity('charE', true);
+                    } else {
+                        mCtrl.$setValidity('charE', false);
+                    }
+                    return value;
+                }
+                mCtrl.$parsers.push(myValidation);
+            }
+        };
+    });
+    app.controller('myCtrl',function($scope) {
+      $scope.firstName="John";
+      $scope.lastName="Doe";
+    });
+    app.directive("firstDirective", function() {
+        return {
+            template : "<h1>Made by a directive constructor! </h1>"
+        };
+    });
+    app.directive("restrictedDirective", function() {
+      return {
+        restrict : "A",
+        template : "<h1>Made by a directive constructor again! </h1>"
+      };
+    });
+    app.controller('clickCtrl',function($scope) {
+      $scope.firstName = "David";
+      $scope.changeName = function() {
+        $scope.firstName = "Divad";
+      }
+    });
+    app.run(function($rootScope) {
+      $rootScope.color = 'orange';
+    });
+    app.controller('myContr',function($scope) {
+      $scope.color  = 'green';
+    });
+
+    app.controller('namesCtrl', function($scope) {
+      $scope.names = [
+        'David',
+        'Gabe',
+        'Ben',
+        'Alex',
+        'Matt',
+        'Mathew',
+        'Bernie',
+        'Danny'
+      ];
+    });
+    app.controller('timeCtrl',function($scope,$interval) {
+      $scope.time = new Date().toLocaleTimeString();
+      $interval(function () {
+          $scope.time = new Date().toLocaleTimeString();
+      }, 1000);
+    });
+    app.controller('eventCtrl', function($scope) {
+      $scope.myFunc = function(myEvent) {
+        $scope.x = myEvent.clientX;
+        $scope.y = myEvent.clientY;
+      }
+    });
+
+    function scrollTo(elem_id, test) {
+      var elem = document.getElementById(elem_id);
+      elem.scrollIntoView(true);
+    };
+  </script>
+
+</body>
+
+</html>
